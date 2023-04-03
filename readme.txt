@@ -7,14 +7,14 @@ Author URI: https://matthewfries.com
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 3.3
-Tested up to: 5.3.2
-Stable tag: 1.1
+Tested up to: 6.1.1
+Stable tag: 1.2
 
 A simple event calendar created for musicians but useful for anyone. Supports multi-day events, styled text, links, images, and more.
 
 == Description ==
 
-I'm Matthew Fries (that's where the MF in MF Gig Calendar comes from) and I'm a NYC jazz pianist and part-time web developer. I developed this plugin because I wanted a flexible and easy to use performance calendar for [my own music website](https://matthewfries.com). In the process I tried to create something that would work for more than just musicians. I've added a few features since it started:
+I'm Matthew Fries (that's where the MF in MF Gig Calendar comes from) and I'm a jazz pianist and educator. I'm not able to support this plugin as enthusiastically as before, but I developed it originally because I wanted a flexible and easy to use performance calendar for [my own music website](https://matthewfries.com). In the process I tried to create something that would work for more than just musicians. I've added a few features since it started:
 
 = Current Features =
 * beginning and end dates for multiple-day events
@@ -30,7 +30,7 @@ The calendar can be placed in any **PAGE** or **POST** on your Wordpress site - 
 
 `[mfgigcal]`
 
-Requires WordPress 3.3 or newer because of the changes to the Wordpress WYSIWYG editor. Personally tested up to 5.2.3.
+Requires WordPress 3.3 or newer because of the changes to the Wordpress WYSIWYG editor. Personally tested up to 6.1.1.
 
 Want to keep in touch? Here are a few options...
 
@@ -38,7 +38,7 @@ Want to keep in touch? Here are a few options...
 * [facebook](http://www.facebook.com/matthewfriesmusic)
 * [twitter](http://www.twitter.com/mfjazz)
 
-As a general rule I've tried to keep this as simple and flexible as possible. If you're a musician and you want really fancy - ticketing info, mapping, tour grouping, and all the bells and whistles you can stand - you should check out *"Gigs Calendar"* by Dan Coulter over at [blogsforbands.com](http://www.blogsforbands.com). It's a great plugin that I've also used quite a few times on other sites that has all kinds of cool features specific to musicians and fans. Really, it's great.
+As a general rule I've tried to keep this as simple and flexible as possible.
 
 
 == Installation ==
@@ -92,6 +92,10 @@ I tried to keep the basics of this plugin pretty simple so that it would be usef
 
 == Changelog ==
 
+
+**Version 1.2**
+* Security issue fixes!
+* Now PHP 8 compatible
 
 **Version 1.1**
 * Another attempt to fix the bug causing dates to be off by one day in certain hosting environments.

@@ -22,11 +22,26 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 class GigCalendarWidget extends WP_Widget {
 
-	function GigCalendarWidget() {
-		parent::WP_Widget( false, $name = 'MF Gig Calendar', array( 'description' => __('MF Gig Calendar Widget displays a list of upcoming events.', 'mfgigcal') ) );
+	// The construct part
+	function __construct() {
+		parent::__construct(
+ 
+			// Base ID of your widget
+			'mfgigcal_ID', 
+ 
+			// Widget name will appear in UI
+			__('MF Gig Calendar', 'mfgigcal'), 
+ 
+			// Widget description
+			array( 'description' => __( 'MF Gig Calendar Widget displays a list of upcoming events.', 'mfgigcal' ), )
+		);
 	}
+	
+	/* function GigCalendarWidget() {
+		parent::WP_Widget( false, $name = 'MF Gig Calendar', array( 'description' => __('MF Gig Calendar Widget displays a list of upcoming events.', 'mfgigcal') ) );
+	}*/
 	 
-	function widget( $args, $instance ) {
+	public function widget( $args, $instance ) {
 		extract( $args );
 		$title = apply_filters( 'widget_title', $instance['title'] );
 		$events_to_display = apply_filters( 'events_to_display', $instance['events_to_display'] );
@@ -96,11 +111,11 @@ class GigCalendarWidget extends WP_Widget {
 		
 	}
 
-	function update( $new_instance, $old_instance ) {
+	public function update( $new_instance, $old_instance ) {
 		return $new_instance;
 	}
 	 
-	function form( $instance ) {
+	public function form( $instance ) {
 		$title = esc_attr( $instance['title'] );
 		$events_to_display = esc_attr( $instance['events_to_display']);
 		$display_when_empty = esc_attr( $instance['display_when_empty']);
