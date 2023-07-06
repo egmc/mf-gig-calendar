@@ -2,7 +2,7 @@
 /*
 Plugin Name: MF Gig Calendar
 Description: A simple event calendar created for musicians but useful for anyone. Supports multi-day events, styled text, links, images, and more. Version 1.2 is now compatible with PHP 8.
-Version: 1.2
+Version: 1.2.1
 Author: Matthew Fries
 Plugin URI: https://matthewfries.com/mf-gig-calendar
 Author URI: https://matthewfries.com
@@ -790,6 +790,8 @@ function mfgigcal_save_record() {
 	}
 
 	$post_id = $_POST['id'] ?? null;
+	$event_title = strip_tags($_POST['title']);
+	$event_time = strip_tags($_POST['time']) ?? null;
 	if ( $post_id ) {  // update record
 		$wpdb->update(
 			$mfgigcal_table,
@@ -797,8 +799,8 @@ function mfgigcal_save_record() {
 				'start_date' => $_POST['start_date'],
 				'end_date'   => $end_date,
 				'pub_date'   => date( "Y-m-d H:i:s" ),
-				'time'       => $_POST['time'],
-				'title'      => $_POST['title'],
+				'time'       => $event_time,
+				'title'      => $event_title,
 				'location'   => $_POST['location'],
 				'details'    => $_POST['details']
 			),
@@ -819,8 +821,8 @@ function mfgigcal_save_record() {
 				'start_date' => $_POST['start_date'],
 				'end_date'   => $end_date,
 				'pub_date'   => date( "Y-m-d H:i:s" ),
-				'time'       => $_POST['time'],
-				'title'      => $_POST['title'],
+				'time'       => $event_time,
+				'title'      => $event_title,
 				'location'   => $_POST['location'],
 				'details'    => $_POST['details']
 			),
