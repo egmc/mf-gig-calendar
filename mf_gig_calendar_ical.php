@@ -40,17 +40,22 @@ function mfgigcal_format_vevent($event) {
 
     $summary = mfgigcal_escape_ical_content(strip_tags($event->title));
     $description = mfgigcal_escape_ical_content(strip_tags($event->details));
-    $locatopm = mfgigcal_escape_ical_content(strip_tags($event->location));
+    $location = mfgigcal_escape_ical_content(strip_tags($event->location));
+
+    $summary = str_replace(["\r"], '',$summary);
+    $description = str_replace(["\r"], '',$description);
+    $location = str_replace(["\r"], '',$description);
+
 
     $ret = "";
     $ret .= "BEGIN:VEVENT\r\n";
     $ret .= "UID:testcal-{$event->id}\r\n";
     $ret .= "DTSTAMP:{$now_dtstamp}\r\n";
-    $ret .= "DTSTART:{$event->start_date_ymd}\r\n";
-    $ret .= "DTEND:{$event->start_date_ymd}\r\n";
+    $ret .= "DTSTART;VALUE=DATE:{$event->start_date_ymd}\r\n";
+    $ret .= "DTEND;VALUE=DATE:{$event->end_date_ymd}\r\n";
     $ret .= "SUMMARY:{$summary}\r\n";
     $ret .= "DESCRIPTION:{$description}\r\n";
-    $ret .= "LOCATION:{$locatopm}\r\n";
+    $ret .= "LOCATION:{$location}\r\n";
     $ret .= "END:VEVENT\r\n";
     return $ret;
 
