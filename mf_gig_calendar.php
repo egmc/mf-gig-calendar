@@ -1079,6 +1079,9 @@ include_once( 'mf_gig_calendar_feed.php' );
 // WIDGET
 include_once( 'mf_gig_calendar_widget.php' );
 
+// ICAL
+include_once( 'mf_gig_calendar_ical.php' );
+
 // UTILITIES
 function remove_wp_magic_quotes() {
 	$_GET     = stripslashes_deep( $_GET );
