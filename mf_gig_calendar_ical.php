@@ -44,7 +44,7 @@ function mfgigcal_format_vevent($event) {
 
     $summary = str_replace(["\r"], '',$summary);
     $description = str_replace(["\r"], '',$description);
-    $location = str_replace(["\r"], '',$description);
+    $location = str_replace(["\r"], '',$location);
 
 
     $ret = "";
