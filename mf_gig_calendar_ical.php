@@ -82,23 +82,25 @@ function mfgigcal_get_evens_for_ical() {
 
 }
 
-function my_plugin_calendar_template_redirect() {
-    if (isset($_REQUEST['mfgigcal_ical'])) {
+function mfgigcal_ical_template_redirect() {
+    if (get_query_var('mfgigcal_ical')) {
         header('Content-Type: text/calendar; charset=utf-8');
-        header('Content-Disposition: attachment; filename="my-calendar.ics"');
+        header('Content-Disposition: attachment; filename="mfgigcal.ics"');
         echo generate_ical_data();
         exit;
     }
 }
-function custom_ical_rewrite() {
-	global $wp_rewrite;
-	$feed_rules = array(
-	'mfgigcal.ical' => 'index.php?mfgigcal_ical=1'
-	);
-	$wp_rewrite->rules = $feed_rules + $wp_rewrite->rules;
-	return $wp_rewrite->rules;
+function mfgigcal_custom_ical_rewrite() {
+	add_rewrite_rule('mfgigcal-calender','index.php?mfgigcal_ical=1', 'top');
 }
-add_filter('generate_rewrite_rules', 'custom_ical_rewrite');
 
-add_action('init', 'my_plugin_calendar_template_redirect');
-// add_action('template_redirect', 'my_plugin_calendar_template_redirect');
+// add_filter('generate_rewrite_rules', 'mfgigcal_custom_ical_rewrite');
+function mfgigcal_custom_ical_query_vars($vars) {
+    $vars[] = 'mfgigcal_ical';
+    return $vars;
+}
+add_filter('query_vars', 'mfgigcal_custom_ical_query_vars');
+
+
+add_action('init', 'mfgigcal_custom_ical_rewrite');
+add_action('template_redirect', 'mfgigcal_ical_template_redirect');
