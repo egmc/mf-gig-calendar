@@ -3,11 +3,16 @@
 
 function generate_ical_data() {
     $events = mfgigcal_get_evens_for_ical();
+    $tz = wp_timezone_string();
+    $calname = mfgigcal_escape_ical_content(get_bloginfo('name'));
 
     $ical_header = "BEGIN:VCALENDAR\r\n";
-    $ical_header .= "VERSION:2.0\r\n";
+    $ical_header .= "VERSION:1.0\r\n";
+    $ical_header .= "CALSCALE:GREGORIAN\r\n";
     $ical_header .= "METHOD:PUBLISH\r\n";
-    $ical_header .= "PRODID:-//test//My Calendar//EN\r\n";
+    $ical_header .= "X-WR-TIMEZONE:${tz}\r\n";
+    $ical_header .= "X-WR-CALNAME:${calname}\r\n";
+    $ical_header .= "PRODID:-//egmc//mfgigcal-ical//ja\r\n";
 
     $ical_footer = "END:VCALENDAR\r\n";
 
@@ -35,10 +40,13 @@ function mfgigcal_escape_ical_content($content) {
 
 function mfgigcal_format_vevent($event) {
 
-    $now = (new DateTime())->setTimezone(new DateTimeZone('UTC'));
-    $now_dtstamp =  $now->format('Ymd') . "T" . $now->format('His') . "Z";
+    // $now = (new DateTime())->setTimezone(new DateTimeZone('UTC'));
 
-    $summary = mfgigcal_escape_ical_content(strip_tags($event->title));
+    // $now_dtstamp =  $now->format('Ymd') . "T" . $now->format('His') . "Z";
+    $pubdate = (new DateTime($event->pub_date, new DateTimeZone(wp_timezone_string())))->setTimezone(new DateTimeZone('UTC'));
+    $pubdate_dtstamp =  $pubdate->format('Ymd') . "T" . $pubdate->format('His') . "Z";
+
+    $summary = mfgigcal_escape_ical_content(strip_tags($event->title) . " " . $event->time);
     $description = mfgigcal_escape_ical_content(strip_tags($event->details));
     $location = mfgigcal_escape_ical_content(strip_tags($event->location));
 
@@ -49,8 +57,8 @@ function mfgigcal_format_vevent($event) {
 
     $ret = "";
     $ret .= "BEGIN:VEVENT\r\n";
-    $ret .= "UID:testcal-{$event->id}\r\n";
-    $ret .= "DTSTAMP:{$now_dtstamp}\r\n";
+    $ret .= "UID:mfgigcal-event-{$event->id}\r\n";
+    $ret .= "DTSTAMP:{$pubdate_dtstamp}\r\n";
     $ret .= "DTSTART;VALUE=DATE:{$event->start_date_ymd}\r\n";
     $ret .= "DTEND;VALUE=DATE:{$event->end_date_ymd}\r\n";
     $ret .= "SUMMARY:{$summary}\r\n";
@@ -101,6 +109,6 @@ function mfgigcal_custom_ical_query_vars($vars) {
 }
 add_filter('query_vars', 'mfgigcal_custom_ical_query_vars');
 
-
+ 
 add_action('init', 'mfgigcal_custom_ical_rewrite');
 add_action('template_redirect', 'mfgigcal_ical_template_redirect');
