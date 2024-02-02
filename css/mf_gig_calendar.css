@@ -66,6 +66,17 @@ a.rss-link {
 	line-height:16px;
 }
 
+a.ical-link {
+	display:block;
+	height:16px;
+	float:right;
+	background:transparent url(../images/icon-calendar.png) right top no-repeat;
+	background-size: 16px;
+	padding-right:20px;
+	margin-right: 10px;
+	line-height:16px;
+}
+
 #cal_nav {
 	font-size:.9em;
 	margin-bottom: 1.5em;
