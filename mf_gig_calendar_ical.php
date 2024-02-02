@@ -4,14 +4,14 @@
 function generate_ical_data() {
     $events = mfgigcal_get_evens_for_ical();
     $tz = wp_timezone_string();
-    $calname = mfgigcal_escape_ical_content(get_bloginfo('name'));
+    $calname = mfgigcal_escape_ical_content( get_bloginfo('name', 'raw'));
 
     $ical_header = "BEGIN:VCALENDAR\r\n";
     $ical_header .= "VERSION:1.0\r\n";
     $ical_header .= "CALSCALE:GREGORIAN\r\n";
     $ical_header .= "METHOD:PUBLISH\r\n";
     $ical_header .= "X-WR-TIMEZONE:${tz}\r\n";
-    $ical_header .= "X-WR-CALNAME:${calname}\r\n";
+    $ical_header .= "X-WR-CALNAME:${calname} / gigcal \r\n";
     $ical_header .= "PRODID:-//egmc//mfgigcal-ical//ja\r\n";
 
     $ical_footer = "END:VCALENDAR\r\n";
