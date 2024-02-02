@@ -141,6 +141,10 @@ function mfgigcal_getrows( $atts ) {
 		( get_option( 'permalink_structure' ) ) ? $feed_link = "/feed/mfgigcal" : $feed_link = "/?feed=mfgigcal";
 		$mfgigcal_data .= "<a href=\"$feed_link\" class=\"rss-link\">RSS</a>";
 	}
+	if (empty( $atts )) {
+		$ical_link = '/mfgigcal-calender/';
+		$mfgigcal_data .= "<a href=\"$ical_link\" title=\"you can add this gig schedule to your own calendar(such as google calendar) using this URL\" class=\"ical-link\">iCalendar</a>";
+	}
 
 	global $post;
 	$query_prefix = get_permalink( get_post( $post )->id );
