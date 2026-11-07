@@ -7,7 +7,7 @@ function generate_ical_data() {
     $calname = mfgigcal_escape_ical_content( get_bloginfo('name', 'raw'));
 
     $ical_header = "BEGIN:VCALENDAR\r\n";
-    $ical_header .= "VERSION:1.0\r\n";
+    $ical_header .= "VERSION:2.0\r\n";
     $ical_header .= "CALSCALE:GREGORIAN\r\n";
     $ical_header .= "METHOD:PUBLISH\r\n";
     $ical_header .= "X-WR-TIMEZONE:${tz}\r\n";
@@ -46,7 +46,7 @@ function mfgigcal_format_vevent($event) {
     $pubdate = (new DateTime($event->pub_date, new DateTimeZone(wp_timezone_string())))->setTimezone(new DateTimeZone('UTC'));
     $pubdate_dtstamp =  $pubdate->format('Ymd') . "T" . $pubdate->format('His') . "Z";
 
-    $summary = mfgigcal_escape_ical_content(strip_tags($event->title) . " " . $event->time);
+    $summary = mfgigcal_escape_ical_content(strip_tags($event->title) . "(" . $event->time . ")");
     $description = mfgigcal_escape_ical_content(strip_tags($event->details));
     $location = mfgigcal_escape_ical_content(strip_tags($event->location));
 
