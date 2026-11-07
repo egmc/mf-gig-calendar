@@ -29,10 +29,9 @@ function create_my_customfeed() {
 	
 	$mfgigcal_options = get_option('mfgigcal_settings');
 	
-	if (WPLANG == "") { 
-		$language = "en-us"; 
-	} else {
-		$language = WPLANG; 
+	$language = get_bloginfo_rss('language');
+	if ($language == "") {
+		$language = "en-us";
 	}
 	
 	?>
@@ -49,7 +48,7 @@ function create_my_customfeed() {
 	>
 	
 	<channel>
-		<title><?php bloginfo_rss('name'); wp_title_rss(); ?></title>
+		<title><?php bloginfo_rss('name'); ?></title>
 		<atom:link href="<?php self_link(); ?>" rel="self" type="application/rss+xml" />
 		<link><?php bloginfo_rss('url') ?></link>
 		<description>MF Gig Cal Events</description>
@@ -78,13 +77,14 @@ function create_my_customfeed() {
 			?>
 			
 			<item>
-				<guid isPermaLink="false"><?=$mfgigcal_settings['calendar_url']?>?event_id=<?=$mfgigcal_event->id?></guid>
+				<?php $event_url = add_query_arg('event_id', $mfgigcal_event->id, !empty($mfgigcal_settings['calendar_url']) ? $mfgigcal_settings['calendar_url'] : home_url('/')); ?>
+				<guid isPermaLink="false"><?php echo esc_url($event_url); ?></guid>
 				<title><![CDATA[<?=$mfgigcal_event->title?>]]></title>
-				<link><?=$mfgigcal_settings['calendar_url']?>?event_id=<?=$mfgigcal_event->id?></link>
+				<link><?php echo esc_url($event_url); ?></link>
 				<pubDate><?php echo mysql2date('D, d M Y H:i:s +0000', $mfgigcal_event->pub_date, false); ?></pubDate>
 				<description><![CDATA[<p><?php echo mfgigcal_feed_FormatDate($mfgigcal_event->start_date, $mfgigcal_event->end_date); ?> <?=$mfgigcal_event->time?></p>
-				<? echo $mfgigcal_event->location;
-				if ($mfgigcal_settings['rss_details']) { echo $mfgigcal_event->details; } 
+				<?php echo $mfgigcal_event->location;
+				if (!empty($mfgigcal_settings['rss_details'])) { echo $mfgigcal_event->details; } 
 				?>]]></description>
 				<mfgigcal:event-date><?php echo mfgigcal_feed_FormatDate($mfgigcal_event->start_date, $mfgigcal_event->end_date); ?></mfgigcal:event-date>
 				<mfgigcal:event-time><![CDATA[<?=$mfgigcal_event->time?>]]></mfgigcal:event-time>
@@ -128,7 +128,8 @@ function mfgigcal_feed_FormatDate($start_date, $end_date) {
 	$endArray = explode("-", $end_date);
 	$end_date = mktime(0,0,0,$endArray[1],$endArray[2],$endArray[0]);
 	
-	$mfgigcal_date;
+	$mfgigcal_date = "";
+	if (empty($mfgigcal_options['rss_date_format'])) $mfgigcal_options['rss_date_format'] = "mdy";
 	
 	if ($start_date == $end_date) {
 		if ($startArray[2] == "00") {
