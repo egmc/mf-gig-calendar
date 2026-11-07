@@ -1220,8 +1220,9 @@ function mfgigcal_CalendarNav( $show_title = true ) {
 
 	$archive_start    = date( 'Y' );
 	$years_to_display = $archive_start - $first_year + 1;
-	if ( $mfgigcal_settings['archive_limit'] > 0 ) {
-		$years_to_display = min( $years_to_display, $mfgigcal_settings['archive_limit'] );
+	$archive_limit    = intval( $mfgigcal_settings['archive_limit'] ?? 0 );
+	if ( $archive_limit > 0 ) {
+		$years_to_display = min( $years_to_display, $archive_limit );
 	}
 	$y = $archive_start;
 
