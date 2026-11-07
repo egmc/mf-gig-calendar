@@ -10,8 +10,8 @@ function generate_ical_data() {
     $ical_header .= "VERSION:2.0\r\n";
     $ical_header .= "CALSCALE:GREGORIAN\r\n";
     $ical_header .= "METHOD:PUBLISH\r\n";
-    $ical_header .= "X-WR-TIMEZONE:${tz}\r\n";
-    $ical_header .= "X-WR-CALNAME:${calname} / gigcal \r\n";
+    $ical_header .= "X-WR-TIMEZONE:{$tz}\r\n";
+    $ical_header .= "X-WR-CALNAME:{$calname} / gigcal \r\n";
     $ical_header .= "PRODID:-//egmc//mfgigcal-ical//ja\r\n";
 
     $ical_footer = "END:VCALENDAR\r\n";
