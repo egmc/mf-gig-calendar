@@ -8,7 +8,7 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 3.3
 Tested up to: 6.2.2
-Stable tag: 1.2.1-ical3
+Stable tag: 1.2.1-ical4
 
 A simple event calendar created for musicians but useful for anyone. Supports multi-day events, styled text, links, images, and more.
 
@@ -95,6 +95,9 @@ I tried to keep the basics of this plugin pretty simple so that it would be usef
 = Fork changes (egmc/mf-gig-calendar) =
 
 This is a modified version of MF Gig Calendar by Matthew Fries, maintained at https://github.com/egmc/mf-gig-calendar since upstream development has stopped. Changes below were made by egmc.
+
+**Version 1.2.1-ical4** (2026-11-08)
+* Fixed HTML entities (e.g. &quot; &amp; &nbsp;) appearing as-is in iCalendar output
 
 **Version 1.2.1-ical3** (2026-11-08)
 * Added LICENSE (GPLv2) and modification notices
