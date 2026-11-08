@@ -8,7 +8,7 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 3.3
 Tested up to: 6.2.2
-Stable tag: 1.2.1
+Stable tag: 1.2.1-ical3
 
 A simple event calendar created for musicians but useful for anyone. Supports multi-day events, styled text, links, images, and more.
 
@@ -91,6 +91,23 @@ I tried to keep the basics of this plugin pretty simple so that it would be usef
 5. Front end - example of website display
 
 == Changelog ==
+
+= Fork changes (egmc/mf-gig-calendar) =
+
+This is a modified version of MF Gig Calendar by Matthew Fries, maintained at https://github.com/egmc/mf-gig-calendar since upstream development has stopped. Changes below were made by egmc.
+
+**Version 1.2.1-ical3** (2026-11-08)
+* Added LICENSE (GPLv2) and modification notices
+* Added "Update URI: false" so WordPress does not overwrite this fork with the wordpress.org version
+
+**Version 1.2.1-ical2** (2026-11-07)
+* Fixed RSS feed fatal error on PHP 8 (removed WPLANG constant)
+* Replaced short open tags in RSS feed
+* Fixed event links and duplicated title in RSS feed
+* Fixed "archive_limit" and other PHP warnings
+
+**Version 1.2.1-ical** (2026-11-07)
+* Added iCalendar (.ics) output at /mfgigcal-calender/
 
 
 **Version 1.2.1**
