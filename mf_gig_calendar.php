@@ -2,7 +2,7 @@
 /*
 Plugin Name: MF Gig Calendar
 Description: A simple event calendar created for musicians but useful for anyone. Supports multi-day events, styled text, links, images, and more. Version 1.2 is now compatible with PHP 8. This is a fork maintained by egmc that adds iCalendar output and PHP 8 fixes.
-Version: 1.2.1-ical3
+Version: 1.2.1-ical4
 Author: Matthew Fries
 Plugin URI: https://github.com/egmc/mf-gig-calendar
 Author URI: https://matthewfries.com

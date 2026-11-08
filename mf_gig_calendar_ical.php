@@ -47,6 +47,10 @@ function generate_ical_data() {
 }
 
 function mfgigcal_escape_ical_content($content) {
+    // iCalendar is plain text: decode HTML entities (&amp; &quot; &nbsp; ...) stored by WordPress
+    $content = html_entity_decode((string) $content, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+    $content = str_replace("\u{00A0}", ' ', $content); // non-breaking space -> normal space
+
     $escape_characters = [
         '\\' => '\\\\',
         ';' => '\\;',
