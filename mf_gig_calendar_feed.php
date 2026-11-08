@@ -3,6 +3,8 @@
 /*
 
 Copyright (C) 2012 Matthew Fries
+Modified by egmc, 2021-2026 (https://github.com/egmc/mf-gig-calendar)
+  - see readme.txt Changelog for the list of changes in this fork
 
 MF Gig Calendar is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
